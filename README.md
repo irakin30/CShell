@@ -1,6 +1,6 @@
 A functional shell written in C
 
-This shell can (to our knowledge):
+This shell can:
   - Deal with special cases of exit and cd (that don't fork)
   - Run regular (other) commands with execvp
   - Read and separate multiple commands on one line with ; (up to 10 args were tested, with a char limit of 1000)
