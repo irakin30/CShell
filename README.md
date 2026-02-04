@@ -1,4 +1,5 @@
 A functional shell written in C
+The initial project for a Systems Fundamentals class back in High School during Fall 2023.
 
 This shell can:
   - Deal with special cases of exit and cd (that don't fork)
@@ -9,4 +10,8 @@ This shell can:
   - Deal with a single > (redirect out)
   - Deal with a combo of 1 >, <, and | each (like the example on your webpage of form a < c.txt | b > d.txt)
   - Deal with many |s (pipes) (ex: fortune | wc | cowsay | lolcat | wc | cowsay > temp.txt; cat temp.txt)
-  - Has >> functionality 
+  - Has >> functionality
+
+
+Forked: Feb 4, 2026 
+Co-authored by: Lee Eisenberg
