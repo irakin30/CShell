@@ -27,7 +27,7 @@ void child_run(char **args) {
     int status = execvp(args[0], args);
     if (status == -1) { //Built in error handling
       printf("ERROR: %s", strerror(errno));
-      exit(-1);
+      exit(EXIT_FAILURE);
     }
   }
   else {
@@ -36,14 +36,14 @@ void child_run(char **args) {
 }
 
 /*
- *This is an amalgamation of special cases that the shell DO NOT FORK.
+ *This is an amalgamation of special cases that the shell DOES NOT FORK.
  *"exit" - shell does not fork the process and terminates itself.
  *"cd" - shell does not fork and changes the directory of interest.
  *Returns 1 if there was a special case used; 0 otherwise.
  */
 int special_cases(char **args) {
   if(strcmp("exit", args[0]) == 0) {
-    exit(0);
+    exit(EXIT_SUCCESS);
   }
   if(strcmp("cd", args[0]) == 0) {
     if (chdir(args[1]) == -1) {
@@ -83,7 +83,7 @@ void redirect_out(char *fileName , char **args) {
     dup2(backup_stdout, STDOUT_FILENO); 
     
     close(fd1); //remove any memory leaks
-    exit(0);
+    exit(EXIT_SUCCESS);
   } 
   else {
     waitpid(child, NULL, 0); 
@@ -103,7 +103,7 @@ void redirect_out_append(char *fileName , char **args) {
     dup2(backup_stdout, STDOUT_FILENO); 
     
     close(fd1); //remove any memory leaks
-    exit(0);
+    exit(EXIT_SUCCESS);
   } 
   else {
     waitpid(child, NULL, 0); 
@@ -161,7 +161,7 @@ void redirect_inout(char *fileIn, char **args, char *fileOut){
     dup2(backup_stdout, STDOUT_FILENO);
     close(fd_in);
     close(fd_out);
-    exit(0);
+    exit(EXIT_SUCCESS);
   } 
   else {
     waitpid(child, NULL, 0);
