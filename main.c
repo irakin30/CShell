@@ -1,8 +1,11 @@
-#include "shell.h"
+#include "shell.h" 
+#define BUFFER_SIZE 1024 
+
+
 int main(){
-    char *line = malloc(1000);
-    char *current = malloc(1000);
-    char *temp = malloc(1000);
+    char *line = malloc(BUFFER_SIZE);
+    char *current = malloc(BUFFER_SIZE);
+    char *temp = malloc(BUFFER_SIZE);
     char **args = malloc(20 * sizeof(char*));
     char **args2 = malloc(20 * sizeof(char*));
     char **cat = malloc(4 * sizeof(char*));
@@ -20,7 +23,7 @@ int main(){
         char dir[1024];
         getcwd(dir, 1024);
         printf("JingleShell (%s)$ ", dir);
-        fgets(line, 1000, stdin);
+        fgets(line, BUFFER_SIZE, stdin);
         strcat(line, ";");
         while (strchr(line, ';')){
             arglisti = 0;
